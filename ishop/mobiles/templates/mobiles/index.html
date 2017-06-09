@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+
+{% if mobiles %}
+    <ul>
+    {% for mobile in mobiles %}
+        <li><a href="/xo4y/{{ mobile.id }}/">{{ mobile.name }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>All sold :(</p>
+{% endif %}
+
+<br/><br/><br/>
+<h1>You ordered for: {{ total }}</h1>
+
+</body>
+</html>

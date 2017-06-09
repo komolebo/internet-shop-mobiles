@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+
+<ul>
+{% for mobile in mobiles %}
+    <li>{{ mobile.name }} for {{ mobile.price }} UAH
+
+        <!--<form role="form" action="remove/{{mobile}}/" method="post">-->
+            <!--{% csrf_token %}-->
+            <!--<button type="submit">Remove</button>-->
+        <!--</form>-->
+    </li>
+{% endfor %}
+</ul>
+
+
+<ul>
+{% for id in mobiles_id %}
+        <form role="form" action="remove/{{id}}/" method="post">
+            {% csrf_token %}
+            <button type="submit">Remove</button>
+        </form>
+{% endfor %}
+</ul>
+
+
+<br/><br/><br/>
+<h1>You ordered for: {{ total }}</h1>
+
+</body>
+</html>
