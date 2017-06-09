@@ -5,6 +5,10 @@
   <title>1</title>
 </head>
 <body>
+
+{% extends 'registration/banner.html' %}
+
+{% block underbanner %}
   <header>
     {% if user.is_authenticated %}
       Hi {{ user.username }}!
@@ -15,7 +19,7 @@
     {% block content %}
     {% endblock %}
   </main>
-
+{% endblock %}
 
 
 </body>

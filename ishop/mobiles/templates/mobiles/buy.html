@@ -6,12 +6,14 @@
 </head>
 <body>
 
-<a>You've bought {{ mobile.name }} for {{ mobile.price }}</a><br/><br/><br/>
-<a>Congratulations!!!</a>
+{% extends 'registration/check.html' %}
 
+{% block content %}
 
-<br/><br/><br/>
-<h1>You ordered for: {{ total }}</h1>
+<a>Взяв лопату {{ mobile.name }} за {{ mobile.price }} грн</a><br/><br/><br/>
+<a>Носи здоровий</a>
+
+{% endblock %}
 
 </body>
 </html>

@@ -11,7 +11,7 @@ from django.http import HttpResponseRedirect
 from models import Mobile
 
 
-bought_mobiles = []
+bought_mobiles = [1, 2]
 
 
 def get_total():
@@ -71,5 +71,6 @@ def buy(request, mobile_id):
 
 def remove(request, mobile_id):
     bought_mobiles.remove(int(mobile_id))
+    mobile = get_object_or_404(Mobile, pk=mobile_id)
 
-    return render(request, 'mobiles/remove.html', {'mobile_id': mobile_id, 'total': get_total()})
+    return render(request, 'mobiles/remove.html', {'mobile_name': mobile.name, 'total': get_total()})

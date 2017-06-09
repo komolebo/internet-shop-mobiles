@@ -1,18 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+
 {% extends 'registration/greetings.html' %}
 
 {% block title %}Login{% endblock %}
 
 {% block content %}
-  <h2>Login</h2>
-  <form method="post">
+<div align="center">
+    {% if not user.is_authenticated %}
+    <h3>Треба бути своїм</h3>
+    <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">Login</button>
-  </form>
+    <button type="submit">Поїхали</button>
+    </form>
+    {% endif %}
 
-<form action="/xo4y/signup/" method="post">
-    {% csrf_token %}
-    <button type="submit"> "Signup" </button>
-</form>
-
+    <form action="/xo4y/signup/" method="post">
+        {% csrf_token %}
+        <button type="submit"> Хочу до вас </button>
+    </form>
+</div>
 {% endblock %}
+
+</body>
+</html>
