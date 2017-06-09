@@ -3,36 +3,15 @@ from __future__ import unicode_literals
 
 # Create your views here.
 from django.contrib.auth import authenticate
+from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.views import login
 
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, render, redirect
 from django.http import HttpResponseRedirect
-from django.core.urlresolvers import reverse
-from models import Mobile, User
+from models import Mobile
 
 
-bought_mobiles = [1, 2]
-
-
-def my_view(request):
-    username = request.POST['username']
-    password = request.POST['password']
-    user = authenticate(username=username, password=password)
-    print 'my_view'
-    if user is not None:
-        if user.is_active:
-            pass
-            login(request, user)
-            print 'good'
-            # Redirect to a success page.
-        else:
-            print 'bad'
-            # Return a 'disabled account' error message
-            pass
-    else:
-        print 'invalid'
-        # Return an 'invalid login' error message.
-        pass
+bought_mobiles = []
 
 
 def get_total():
@@ -43,10 +22,28 @@ def get_total():
 
 
 def index(request):
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect("login/")
+
     mobiles = Mobile.objects.order_by('-manufacturer')[:5]
     total = get_total()
 
     return render(request, 'mobiles/index.html', {'mobiles': mobiles, 'total': total})
+
+
+def signup(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=raw_password)
+            login(request, user)
+            return redirect('/xo4y/')
+    else:
+        form = UserCreationForm()
+    return render(request, 'registration/signup.html', {'form': form})
 
 
 def detail(request, mobile_id):
@@ -55,7 +52,6 @@ def detail(request, mobile_id):
 
 
 def card(request):
-    # poll = get_object_or_404(Poll, pk=poll_id)
     mobiles = []
 
     for mobile_id in bought_mobiles:

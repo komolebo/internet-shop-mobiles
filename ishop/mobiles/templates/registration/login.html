@@ -1,4 +1,4 @@
-{% extends 'registration/base.html' %}
+{% extends 'registration/greetings.html' %}
 
 {% block title %}Login{% endblock %}
 
@@ -9,4 +9,10 @@
     {{ form.as_p }}
     <button type="submit">Login</button>
   </form>
+
+<form action="/xo4y/signup/" method="post">
+    {% csrf_token %}
+    <button type="submit"> "Signup" </button>
+</form>
+
 {% endblock %}
