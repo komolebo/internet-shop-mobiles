@@ -6,6 +6,9 @@
 </head>
 <body>
 
+{% extends 'registration/check.html' %}
+
+{% block content %}
 
 {% if mobiles %}
     <ul>
@@ -17,8 +20,7 @@
     <p>All sold :(</p>
 {% endif %}
 
-<br/><br/><br/>
-<h1>You ordered for: {{ total }}</h1>
+{% endblock %}
 
 </body>
 </html>

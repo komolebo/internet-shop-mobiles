@@ -2,37 +2,12 @@
 from __future__ import unicode_literals
 
 # Create your views here.
-from django.contrib.auth import authenticate
-from django.contrib.auth.views import login
 
 from django.shortcuts import get_object_or_404, render
-from django.http import HttpResponseRedirect
-from django.core.urlresolvers import reverse
-from models import Mobile, User
+from models import Mobile
 
 
 bought_mobiles = [1, 2]
-
-
-def my_view(request):
-    username = request.POST['username']
-    password = request.POST['password']
-    user = authenticate(username=username, password=password)
-    print 'my_view'
-    if user is not None:
-        if user.is_active:
-            pass
-            login(request, user)
-            print 'good'
-            # Redirect to a success page.
-        else:
-            print 'bad'
-            # Return a 'disabled account' error message
-            pass
-    else:
-        print 'invalid'
-        # Return an 'invalid login' error message.
-        pass
 
 
 def get_total():

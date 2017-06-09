@@ -10,8 +10,14 @@
 
 {% block underbanner %}
 
-<a>You've bought {{ mobile.name }} for {{ mobile.price }}</a><br/><br/><br/>
-<a>Congratulations!!!</a>
+{% block content %}
+{% endblock %}
+
+
+<div align="right">
+<br/><br/><br/>
+<h3>Нагріб на {{ total }} грн </h3>
+</div>
 
 {% endblock %}
 

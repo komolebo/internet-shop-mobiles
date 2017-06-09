@@ -5,6 +5,9 @@
   <title>1</title>
 </head>
 <body>
+
+{% extends 'registration/banner.html' %}
+
   <header>
     {% if user.is_authenticated %}
       Hi {{ user.username }}!

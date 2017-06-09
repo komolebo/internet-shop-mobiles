@@ -2,11 +2,18 @@
 
 {% block title %}Login{% endblock %}
 
-{% block content %}
+{% block main %}
+    {% if not user.is_authenticated %}
   <h2>Login</h2>
   <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit">Login</button>
   </form>
+    {% endif %}
+
+<form action="/xo4y/signup/" method="post">
+    {% csrf_token %}
+    <button type="submit"> "Signup" </button>
+</form>
 {% endblock %}

@@ -6,11 +6,13 @@
 </head>
 <body>
 
+{% extends 'registration/check.html' %}
+
+{% block content %}
+
 <a>You removed {{ mobile_id }} </a>
 
-
-<br/><br/><br/>
-<h1>You ordered for: {{ total }}</h1>
+{% endblock %}
 
 </body>
 </html>
