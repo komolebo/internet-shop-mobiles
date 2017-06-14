@@ -14,7 +14,7 @@
 {% block content %}
 <div align="center">
     {% if not user.is_authenticated %}
-    <h3>Треба бути своїм</h3>
+    <h3>Доведіть, що ви - наша дитина</h3>
     <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
@@ -24,7 +24,7 @@
 
     <form action="/xo4y/signup/" method="post">
         {% csrf_token %}
-        <button type="submit"> Хочу до вас </button>
+        <button type="submit"> Хочу в сім'ю </button>
     </form>
 </div>
 {% endblock %}
