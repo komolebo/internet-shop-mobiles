@@ -6,12 +6,12 @@
 </head>
 <body>
 
-{% extends 'registration/banner.html' %}
+{% extends 'registration/check.html' %}
 
-{% block underbanner %}
+{% block content %}
 
-<a>You've bought {{ mobile.name }} for {{ mobile.price }}</a><br/><br/><br/>
-<a>Congratulations!!!</a>
+<a>Взяв лопату {{ mobile.name }} за {{ mobile.price }} грн</a><br/><br/><br/>
+<a>Носи здоровий</a>
 
 {% endblock %}
 

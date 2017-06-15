@@ -8,9 +8,10 @@
 
 {% extends 'registration/banner.html' %}
 
+{% block underbanner %}
   <header>
     {% if user.is_authenticated %}
-      Hi {{ user.username }}!
+      Привіт, сину {{ user.username }}!
     {% endif %}
   </header>
   <hr>
@@ -18,5 +19,8 @@
     {% block content %}
     {% endblock %}
   </main>
+{% endblock %}
+
+
 </body>
 </html>

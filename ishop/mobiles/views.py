@@ -2,8 +2,12 @@
 from __future__ import unicode_literals
 
 # Create your views here.
+from django.contrib.auth import authenticate
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.views import login
 
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, render, redirect
+from django.http import HttpResponseRedirect
 from models import Mobile
 
 
@@ -18,10 +22,28 @@ def get_total():
 
 
 def index(request):
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect("login/")
+
     mobiles = Mobile.objects.order_by('-manufacturer')[:5]
     total = get_total()
 
     return render(request, 'mobiles/index.html', {'mobiles': mobiles, 'total': total})
+
+
+def signup(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=raw_password)
+            login(request, user)
+            return redirect('/xo4y/')
+    else:
+        form = UserCreationForm()
+    return render(request, 'registration/signup.html', {'form': form})
 
 
 def detail(request, mobile_id):
@@ -30,7 +52,6 @@ def detail(request, mobile_id):
 
 
 def card(request):
-    # poll = get_object_or_404(Poll, pk=poll_id)
     mobiles = []
 
     for mobile_id in bought_mobiles:
@@ -50,5 +71,6 @@ def buy(request, mobile_id):
 
 def remove(request, mobile_id):
     bought_mobiles.remove(int(mobile_id))
+    mobile = get_object_or_404(Mobile, pk=mobile_id)
 
-    return render(request, 'mobiles/remove.html', {'mobile_id': mobile_id, 'total': get_total()})
+    return render(request, 'mobiles/remove.html', {'mobile_name': mobile.name, 'total': get_total()})

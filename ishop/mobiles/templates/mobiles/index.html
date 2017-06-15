@@ -9,15 +9,16 @@
 {% extends 'registration/check.html' %}
 
 {% block content %}
-
 {% if mobiles %}
-    <ul>
+    <ul class="list-group">
     {% for mobile in mobiles %}
-        <li><a href="/xo4y/{{ mobile.id }}/">{{ mobile.name }}</a></li>
+        <li class="list-group-item"><a href="/xo4y/{{ mobile.id }}/">{{ mobile.name }}</a></li>
     {% endfor %}
     </ul>
+    <a href='/xo4y/logout'>Покинути сім'ю</a>
 {% else %}
     <p>All sold :(</p>
+
 {% endif %}
 
 {% endblock %}

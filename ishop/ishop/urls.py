@@ -20,19 +20,15 @@ from django.contrib.auth import views as auth_views
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
-admin.autodiscover()
+from django.views.generic import RedirectView
 
 urlpatterns = [
-    # Examples:
-    # url(r'^$', '{{ project_name }}.views.home', name='home'),
-    # url(r'^{{ project_name }}/', include('{{ project_name }}.foo.urls')),
+    # Redirect
+    url(r'^$', RedirectView.as_view(url='/xo4y/')),
 
-    # Uncomment the admin/doc line below to enable admin documentation:
-    # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
-
-    # Uncomment the next line to enable the admin:
     url(r'^xo4y/', include('mobiles.urls', namespace="mobiles")),
     url(r'^admin/', include(admin.site.urls)),
-    # url(r'^login/$', auth_views.login, name='login'),
-    # url(r'^logout/$', auth_views.logout, name='logout'),
 ]
+
+admin.autodiscover()
+
